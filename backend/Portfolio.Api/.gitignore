@@ -1,0 +1,12 @@
+# Secrets and environment-specific settings — never commit these
+appsettings.Development.json
+appsettings.*.Development.json
+appsettings.Local.json
+appsettings.*.Local.json
+appsettings.Production.json
+secrets.json
+
+# Environment variable files
+.env
+.env.*
+!.env.example
