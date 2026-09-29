@@ -1,7 +1,11 @@
+using System.Net.Http.Headers;
+using System.Threading.RateLimiting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using Portfolio.Infrastructure.Data;
 using Portfolio.Application.Interfaces;
 using Portfolio.Application.Services;
+using Portfolio.Infrastructure.Rag;
 using Portfolio.Infrastructure.Repositories;
 
 
@@ -16,6 +20,38 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     IProjectService,
     ProjectService>();
+
+builder.Services.Configure<RagOptions>(builder.Configuration.GetSection(RagOptions.SectionName));
+builder.Services.PostConfigure<RagOptions>(options =>
+    options.KnowledgeFilePath = Path.Combine(builder.Environment.ContentRootPath, options.KnowledgeFilePath));
+
+builder.Services.AddSingleton<KnowledgeBase>();
+builder.Services.AddHttpClient<OpenAiClient>((sp, client) =>
+{
+    var rag = sp.GetRequiredService<IOptions<RagOptions>>().Value;
+    client.BaseAddress = new Uri(rag.BaseUrl.TrimEnd('/') + "/");
+    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", rag.ApiKey);
+    client.Timeout = TimeSpan.FromSeconds(60);
+});
+builder.Services.AddScoped<IChatService, RagChatService>();
+
+var allowedOrigins = builder.Configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
+builder.Services.AddCors(options =>
+    options.AddDefaultPolicy(policy =>
+        policy.WithOrigins(allowedOrigins).AllowAnyHeader().WithMethods("GET", "POST")));
+
+builder.Services.AddRateLimiter(options =>
+{
+    options.RejectionStatusCode = StatusCodes.Status429TooManyRequests;
+    options.AddPolicy("chat", httpContext =>
+        RateLimitPartition.GetFixedWindowLimiter(
+            httpContext.Connection.RemoteIpAddress?.ToString() ?? "unknown",
+            _ => new FixedWindowRateLimiterOptions
+            {
+                PermitLimit = 10,
+                Window = TimeSpan.FromMinutes(1),
+            }));
+});
 
 builder.Services.AddControllers();
 
@@ -38,6 +74,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors();
+app.UseRateLimiter();
 
 var summaries = new[]
 {

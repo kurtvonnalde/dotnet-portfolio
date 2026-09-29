@@ -1,6 +1,7 @@
 import { MessageSquareText, SendHorizontal, Sparkles, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
+import { sendChatMessage } from "../services/chatService";
 import Sidebar from "./Sidebar";
 
 type ChatMessage = {
@@ -9,41 +10,58 @@ type ChatMessage = {
   text: string;
 };
 
-const botResponse =
-  "The chatbot is still in progress. It will be available soon and will respond when it’s ready.";
+const WELCOME_ID = 1;
+const MAX_HISTORY = 6;
 
 export default function MainLayout() {
   const [isOpen, setIsOpen] = useState(true);
   const [draft, setDraft] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
-      id: 1,
+      id: WELCOME_ID,
       sender: "assistant",
-      text: "Welcome! I’m Krawl, Kurt's AI Assistant. I’m currently being built and will be available soon.",
+      text: "Welcome! I’m Krawl, Kurt's AI Assistant. Ask me about his projects, experience, skills, or services.",
     },
   ]);
 
-  const sendMessage = () => {
+  useEffect(() => {
+    scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
+  }, [messages, isSending]);
+
+  const sendMessage = async () => {
     const trimmed = draft.trim();
 
-    if (!trimmed) {
+    if (!trimmed || isSending) {
       return;
     }
 
-    const userMessage: ChatMessage = {
-      id: Date.now(),
-      sender: "user",
-      text: trimmed,
-    };
+    const history = messages
+      .filter((m) => m.id !== WELCOME_ID)
+      .slice(-MAX_HISTORY)
+      .map((m) => ({ role: m.sender, content: m.text }));
 
-    const assistantMessage: ChatMessage = {
-      id: Date.now() + 1,
-      sender: "assistant",
-      text: botResponse,
-    };
-
-    setMessages((current) => [...current, userMessage, assistantMessage]);
+    setMessages((current) => [
+      ...current,
+      { id: Date.now(), sender: "user", text: trimmed },
+    ]);
     setDraft("");
+    setIsSending(true);
+
+    let reply: string;
+    try {
+      reply = (await sendChatMessage(trimmed, history)).answer;
+    } catch (error) {
+      reply = error instanceof Error ? error.message : "Something went wrong.";
+    } finally {
+      setIsSending(false);
+    }
+
+    setMessages((current) => [
+      ...current,
+      { id: Date.now() + 1, sender: "assistant", text: reply },
+    ]);
   };
 
   return (
@@ -84,7 +102,7 @@ export default function MainLayout() {
             </div>
 
             <div className="flex h-[420px] flex-col bg-[#f4f3f1]">
-              <div className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
+              <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
                 {messages.map((message) => (
                   <div
                     key={message.id}
@@ -93,7 +111,7 @@ export default function MainLayout() {
                     }`}
                   >
                     <div
-                      className={`max-w-[82%] rounded-2xl px-3 py-2 text-sm leading-relaxed ${
+                      className={`max-w-[82%] whitespace-pre-line rounded-2xl px-3 py-2 text-sm leading-relaxed ${
                         message.sender === "assistant"
                           ? "bg-white text-slate-700 ring-1 ring-slate-200"
                           : "bg-slate-900 text-white"
@@ -103,6 +121,14 @@ export default function MainLayout() {
                     </div>
                   </div>
                 ))}
+
+                {isSending && (
+                  <div className="flex justify-start">
+                    <div className="rounded-2xl bg-white px-3 py-2 text-sm text-slate-400 ring-1 ring-slate-200">
+                      Krawl is thinking...
+                    </div>
+                  </div>
+                )}
               </div>
 
               <div className="border-t border-slate-200 bg-white p-3">
@@ -117,7 +143,8 @@ export default function MainLayout() {
                         sendMessage();
                       }
                     }}
-                    placeholder="Ask about the use cases..."
+                    maxLength={500}
+                    placeholder="Ask about Kurt's work..."
                     className="w-full border-0 bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none"
                   />
 
@@ -125,7 +152,8 @@ export default function MainLayout() {
                     type="button"
                     aria-label="Send message"
                     onClick={sendMessage}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white transition hover:bg-slate-700"
+                    disabled={isSending}
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white transition hover:bg-slate-700 disabled:opacity-50"
                   >
                     <SendHorizontal className="h-4 w-4" />
                   </button>

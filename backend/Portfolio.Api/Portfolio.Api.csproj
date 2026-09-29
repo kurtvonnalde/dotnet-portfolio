@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>portfolio-api-6f1c2a9e-4b7d-4f3a-9c1e-2d8b5a7e0f41</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

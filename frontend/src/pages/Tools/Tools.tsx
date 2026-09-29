@@ -1,34 +1,34 @@
 import {
   SiDotnet,
-  SiErpnext,
-  SiFlask,
-  SiFrappe,
-  SiFlutter,
   SiGit,
+  SiGithub,
   SiJavascript,
   SiMongodb,
   SiMysql,
   SiPython,
-  SiUbuntu,
+  SiReact,
+  SiSupabase,
 } from "react-icons/si";
 import { SiCss, SiHtml5 } from "react-icons/si";
-import { FaAws } from "react-icons/fa";
 import type { IconType } from "react-icons";
 import { skills } from "../../data/tools";
+import { BiBarChartAlt2, BiBrain, BiCloud, BiGitBranch, BiBot } from "react-icons/bi";
 
 const skillIcons: Record<string, IconType> = {
   python: SiPython,
-  flutter: SiFlutter,
-  ubuntu: SiUbuntu,
+  supabase: SiSupabase,
+  powerbi: BiBarChartAlt2,
   git: SiGit,
-  erpnext: SiErpnext,
+  devops: BiGitBranch,
   mongodb: SiMongodb,
   javascript: SiJavascript,
-  frappe: SiFrappe,
+  github: SiGithub,
   dotnet: SiDotnet,
-  flask: SiFlask,
+  react: SiReact,
   mysql: SiMysql,
-  aws: FaAws,
+  azure: BiCloud,
+  foundry: BiBrain,
+  openai: BiBot,
 };
 
 export default function Tools() {
