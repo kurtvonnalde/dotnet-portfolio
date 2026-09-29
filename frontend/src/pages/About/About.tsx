@@ -1,4 +1,9 @@
-import { Award, BriefcaseBusiness, GraduationCap } from "lucide-react";
+import {
+  Award,
+  BriefcaseBusiness,
+  GraduationCap,
+  type LucideIcon,
+} from "lucide-react";
 import { aboutContent } from "../../data/about";
 import { certifications } from "../../data/certifications";
 import { education } from "../../data/education";
@@ -24,6 +29,10 @@ const timeline = [
     description: entry.description,
   })),
 ].sort((first, second) => first.startYear - second.startYear);
+
+const certificationIconMap: Record<string, LucideIcon> = {
+  award: Award,
+};
 
 export default function About() {
   return (
@@ -106,20 +115,48 @@ export default function About() {
       </section>
 
       <h2 className="mt-10 text-xl font-bold text-slate-900">Certifications</h2>
-      <ul className="mt-4 space-y-3">
-        {certifications.map((cert) => (
-          <li key={cert.title} className="flex items-start gap-3">
-            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-500 ring-1 ring-amber-100">
-              <Award className="h-4 w-4" />
-            </div>
-            <div>
-              <p className="text-sm font-semibold text-slate-900">
-                {cert.title}
-              </p>
-              <p className="text-xs text-slate-500">{cert.issuer}</p>
-            </div>
-          </li>
-        ))}
+      <ul className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        {certifications.map((cert) => {
+          const Icon = certificationIconMap[cert.icon ?? "award"] ?? Award;
+
+          return (
+            <li
+              key={cert.title}
+              className="group relative overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ring-1 ring-slate-100 transition-all duration-200 hover:-translate-y-1 hover:border-amber-200 hover:shadow-lg"
+            >
+              <div className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-amber-300 via-yellow-400 to-orange-400" />
+
+              <div className="flex items-start gap-3 pt-1">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-100 to-yellow-50 text-amber-600 ring-1 ring-amber-100">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <p className="text-sm font-semibold text-slate-900">
+                      {cert.title}
+                    </p>
+                    <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-700 ring-1 ring-amber-100">
+                      {cert.year}
+                    </span>
+                  </div>
+
+                  <div className="mt-2 flex items-center justify-between gap-2">
+                    <p className="text-xs font-medium uppercase tracking-[0.12em] text-slate-500">
+                      {cert.issuer}
+                    </p>
+                    <span className="rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-emerald-700">
+                      {cert.badge}
+                    </span>
+                  </div>
+
+                  <p className="mt-3 text-sm leading-relaxed text-slate-600">
+                    {cert.overview}
+                  </p>
+                </div>
+              </div>
+            </li>
+          );
+        })}
       </ul>
     </section>
   );

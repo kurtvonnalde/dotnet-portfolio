@@ -4,6 +4,7 @@ export const caseStudies = [
   {
     title: "Scaling Checkout to 1M Orders",
     client: "Northwind Labs",
+    badge: "Growth",
     summary: "Rebuilt the checkout pipeline to survive peak traffic.",
     problem:
       "The legacy checkout buckled under Black Friday load, dropping orders.",
@@ -15,6 +16,7 @@ export const caseStudies = [
   {
     title: "AI Support Copilot",
     client: "Helpwise",
+    badge: "Efficiency",
     summary: "Cut support response time with a RAG-powered assistant.",
     problem: "Agents spent hours digging through docs to answer tickets.",
     solution:

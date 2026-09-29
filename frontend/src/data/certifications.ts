@@ -1,5 +1,16 @@
 export const certifications = [
-  { title: "Azure Developer Associate", issuer: "Microsoft — AZ-204" },
-  { title: "Azure Fundamentals", issuer: "Microsoft — AZ-900" },
-  { title: "Professional Scrum Developer", issuer: "Scrum.org" },
+  {
+    title: "Mendix Intermediate Developer",
+    issuer: "Mendix",
+    year: "2024",    badge: "Verified",    icon: "award",
+    overview:
+      "Built and validated no-code app workflows with reusable logic, data models, and user-facing interfaces.",
+  },
+    {
+    title: "Mendix Intermediate Developer",
+    issuer: "Mendix",
+    year: "2024",    badge: "Verified",    icon: "award",
+    overview:
+      "Built and validated no-code app workflows with reusable logic, data models, and user-facing interfaces.",
+  },
 ];
