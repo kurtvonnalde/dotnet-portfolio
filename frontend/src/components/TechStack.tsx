@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 import { SiReact, SiTypescript, SiDotnet, SiPostgresql } from "react-icons/si";
 import { VscAzure } from "react-icons/vsc";
 import { FaDatabase } from "react-icons/fa";
-import { portfolio } from "../data/portfolio";
+import { technologies } from "../data/tools";
 
 const techIcons: Record<string, ReactNode> = {
   React: <SiReact className="text-[#61DAFB]" />,
@@ -14,7 +14,7 @@ const techIcons: Record<string, ReactNode> = {
 };
 
 export default function TechStack() {
-  const items = portfolio.technologies;
+  const items = technologies;
 
   return (
     <div className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white p-4">

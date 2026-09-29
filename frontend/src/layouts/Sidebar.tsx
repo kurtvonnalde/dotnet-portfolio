@@ -12,13 +12,15 @@ import {
 } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaDiscord } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
-import profile from "../assets/hero.png";
+import profileImage from "../assets/hero.png";
+import { contactContent } from "../data/contact";
+import { profile } from "../data/profile";
 
-const socials = [
-  { label: "Facebook", href: "#", Icon: FaFacebookF, active: false },
-  { label: "LinkedIn", href: "#", Icon: FaLinkedinIn, active: true },
-  { label: "Discord", href: "#", Icon: FaDiscord, active: false },
-];
+const socialIcons = {
+  facebook: FaFacebookF,
+  linkedin: FaLinkedinIn,
+  discord: FaDiscord,
+};
 
 const nav = [
   { label: "Home", to: "/", Icon: Home, end: true },
@@ -36,34 +38,38 @@ export default function Sidebar() {
       <div className="flex flex-col items-center">
         <div className="rounded-full p-1 ring-1 ring-slate-200">
           <img
-            src={profile}
-            alt="Kurt Vonn Alde"
+            src={profileImage}
+            alt={profile.name}
             className="h-24 w-24 rounded-full object-cover"
           />
         </div>
 
         <h2 className="mt-4 flex items-center gap-1.5 text-center text-lg font-bold text-slate-900">
-          Kurt Vonn Alde
+          {profile.name}
           <MdVerified className="h-4 w-4 text-blue-500" />
         </h2>
 
-        <p className="text-center text-sm text-slate-400">@kurtvonnalde</p>
+        <p className="text-center text-sm text-slate-400">{profile.handle}</p>
 
         <div className="mt-4 flex gap-2.5">
-          {socials.map(({ label, href, Icon, active }) => (
-            <a
-              key={label}
-              href={href}
-              aria-label={label}
-              className={`flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors ${
-                active
-                  ? "bg-blue-600 hover:bg-blue-700"
-                  : "bg-slate-900 hover:bg-slate-700"
-              }`}
-            >
-              <Icon className="h-4 w-4" />
-            </a>
-          ))}
+          {contactContent.socials.map(({ platform, label, href }) => {
+            const Icon = socialIcons[platform];
+            const active = platform === "linkedin";
+            return (
+              <a
+                key={label}
+                href={href}
+                aria-label={label}
+                className={`flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors ${
+                  active
+                    ? "bg-blue-600 hover:bg-blue-700"
+                    : "bg-slate-900 hover:bg-slate-700"
+                }`}
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            );
+          })}
 
           <button
             type="button"
@@ -112,7 +118,7 @@ export default function Sidebar() {
           <p className="text-xs leading-tight text-slate-400">
             © 2026
             <br />
-            Kurt Vonn Alde. All rights reserved.
+            {profile.name}. All rights reserved.
           </p>
         </div>
       </div>

@@ -1,8 +1,21 @@
 using Microsoft.EntityFrameworkCore;
 using Portfolio.Infrastructure.Data;
+using Portfolio.Application.Interfaces;
+using Portfolio.Application.Services;
+using Portfolio.Infrastructure.Repositories;
+
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddScoped<
+    IProjectRepository,
+    ProjectRepository>();
+
+builder.Services.AddScoped<
+    IProjectService,
+    ProjectService>();
 
 builder.Services.AddControllers();
 

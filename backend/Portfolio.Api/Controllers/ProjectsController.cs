@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Portfolio.Infrastructure.Data;
+using Portfolio.Application.Interfaces;
 
 namespace Portfolio.Api.Controllers;
 
@@ -8,32 +7,32 @@ namespace Portfolio.Api.Controllers;
 [Route("api/[controller]")]
 public class ProjectsController : ControllerBase
 {
-    private readonly PortfolioDbContext _dbContext;
+    private readonly IProjectService _service;
 
-    public ProjectsController(PortfolioDbContext dbContext)
+    public ProjectsController(
+        IProjectService service)
     {
-        _dbContext = dbContext;
+        _service = service;
     }
 
     [HttpGet]
     public async Task<IActionResult> GetProjects()
     {
-        var projects = await _dbContext.Projects.ToListAsync();
+        var projects = await _service.GetAllAsync();
 
         return Ok(projects);
     }
 
     [HttpGet("{id:guid}")]
-public async Task<IActionResult> GetProject(Guid id)
-{
-    var project = await _dbContext.Projects
-        .FirstOrDefaultAsync(x => x.Id == id);
-
-    if (project is null)
+    public async Task<IActionResult> GetProject(Guid id)
     {
-        return NotFound();
-    }
+        var project = await _service.GetByIdAsync(id);
 
-    return Ok(project);
-}
+        if (project is null)
+        {
+            return NotFound();
+        }
+
+        return Ok(project);
+    }
 }

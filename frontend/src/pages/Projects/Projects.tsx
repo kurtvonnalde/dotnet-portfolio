@@ -1,5 +1,23 @@
 import { ArrowRight } from "lucide-react";
-import { portfolio } from "../../data/portfolio";
+import { projects } from "../../data/projects";
+
+import { API_URL } from "../../config/api";
+import type { Project } from "../../types/project";
+
+export const projectApi = {
+  async getAll(): Promise<Project[]> {
+    const response = await fetch(
+      `${API_URL}/projects`
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to load projects");
+    }
+
+    return response.json();
+  },
+};
+
 
 export default function Projects() {
   return (
@@ -8,7 +26,7 @@ export default function Projects() {
       <p className="mt-2 text-slate-600">Some of the things I've built.</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        {portfolio.projects.map((project) => (
+        {projects.map((project) => (
           <div
             key={project.title}
             className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-sm transition-all hover:-translate-y-1 hover:shadow-lg"

@@ -1,16 +1,16 @@
 import { ArrowRight } from "lucide-react";
-import { portfolio } from "../data/portfolio";
+import { homeContent } from "../data/home";
 
 export default function Hero() {
   return (
     <section className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
       <div>
         <h1 className="max-w-4xl text-4xl lg:text-5xl font-extrabold leading-tight text-slate-900">
-          {portfolio.tagline}
+          {homeContent.tagline}
         </h1>
 
         <p className="mt-6 max-w-3xl text-xl text-slate-600">
-          {portfolio.summary}
+          {homeContent.summary}
         </p>
       </div>
 

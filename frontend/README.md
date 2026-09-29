@@ -1,5 +1,23 @@
 # React + TypeScript + Vite
 
+## Portfolio content
+
+Portfolio content lives in `src/data/`, split by section so each area is quick to find:
+
+- `profile.ts`: name, initials, role, and handle
+- `home.ts`: hero copy and featured AI builds
+- `projects.ts`: project list
+- `about.ts`: biography
+- `education.ts`: education timeline entries
+- `employment.ts`: employment history entries
+- `certifications.ts`: certifications
+- `services.ts`: service list
+- `tools.ts`: technologies
+- `caseStudies.ts`: case studies
+- `contact.ts`: contact copy and social links
+
+Edit the matching file when updating that section; the pages and home dashboard read from these modules.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

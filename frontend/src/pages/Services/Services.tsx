@@ -1,5 +1,5 @@
 import { Code2, Cloud, Sparkles } from "lucide-react";
-import { portfolio } from "../../data/portfolio";
+import { services } from "../../data/services";
 
 const serviceIcons = [Code2, Cloud, Sparkles];
 
@@ -10,7 +10,7 @@ export default function Services() {
       <p className="mt-2 text-slate-600">How I can help.</p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {portfolio.services.map((service, i) => {
+        {services.map((service, i) => {
           const Icon = serviceIcons[i % serviceIcons.length];
           return (
             <div

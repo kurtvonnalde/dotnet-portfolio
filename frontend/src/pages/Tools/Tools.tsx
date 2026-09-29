@@ -1,23 +1,91 @@
-import { Wrench } from "lucide-react";
-import { portfolio } from "../../data/portfolio";
+import {
+  SiDotnet,
+  SiErpnext,
+  SiFlask,
+  SiFrappe,
+  SiFlutter,
+  SiGit,
+  SiJavascript,
+  SiMongodb,
+  SiMysql,
+  SiPython,
+  SiUbuntu,
+} from "react-icons/si";
+import { SiCss, SiHtml5 } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
+import type { IconType } from "react-icons";
+import { skills } from "../../data/tools";
+
+const skillIcons: Record<string, IconType> = {
+  python: SiPython,
+  flutter: SiFlutter,
+  ubuntu: SiUbuntu,
+  git: SiGit,
+  erpnext: SiErpnext,
+  mongodb: SiMongodb,
+  javascript: SiJavascript,
+  frappe: SiFrappe,
+  dotnet: SiDotnet,
+  flask: SiFlask,
+  mysql: SiMysql,
+  aws: FaAws,
+};
 
 export default function Tools() {
   return (
     <section>
-      <h1 className="text-3xl font-extrabold text-slate-900">Tools</h1>
-      <p className="mt-2 text-slate-600">The stack I reach for every day.</p>
-
-      <div className="mt-8 flex flex-wrap gap-3">
-        {portfolio.technologies.map((tech) => (
-          <span
-            key={tech}
-            className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm"
-          >
-            <Wrench className="h-4 w-4 text-slate-400" />
-            {tech}
-          </span>
-        ))}
+      <div className="flex flex-wrap items-end justify-between gap-3 border-b border-slate-200 pb-5">
+        <div>
+          <h1 className="text-3xl font-extrabold text-slate-900">Tools I used</h1>
+          <p className="mt-2 text-slate-600">
+            Languages, frameworks, platforms, and tools.
+          </p>
+        </div>
+        <span className="text-sm font-medium text-slate-500">
+          {skills.length} skills
+        </span>
       </div>
+
+      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+        {skills.map((skill) => {
+          const Icon = skillIcons[skill.icon];
+          return (
+            <li
+              key={skill.name}
+              className={`flex min-h-32 flex-col justify-between rounded-lg border p-4 transition-colors ${
+                skill.featured
+                  ? "border-amber-300 bg-amber-50"
+                  : "border-slate-200 bg-white hover:border-slate-300"
+              }`}
+            >
+              <div
+                className={`flex h-11 w-11 items-center justify-center rounded-md ${
+                  skill.featured ? "bg-amber-100" : "bg-slate-50"
+                }`}
+              >
+                {skill.icon === "htmlCss" ? (
+                  <span className="flex items-center gap-1" aria-hidden="true">
+                    <SiHtml5 className="h-5 w-5" style={{ color: "#E34F26" }} />
+                    <SiCss className="h-5 w-5" style={{ color: "#1572B6" }} />
+                  </span>
+                ) : (
+                  <Icon
+                    aria-hidden="true"
+                    className="h-6 w-6"
+                    style={{ color: skill.color }}
+                  />
+                )}
+              </div>
+              <div className="mt-5">
+                <h2 className="text-sm font-semibold leading-snug text-slate-900">
+                  {skill.name}
+                </h2>
+                <p className="mt-1 text-xs text-slate-500">{skill.category}</p>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
     </section>
   );
 }
