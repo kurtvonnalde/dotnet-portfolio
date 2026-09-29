@@ -12,9 +12,13 @@ type ChatMessage = {
 
 const WELCOME_ID = 1;
 const MAX_HISTORY = 6;
+const CHAT_HINT_KEY = "krawl-chat-hint-seen";
 
 export default function MainLayout() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showChatHint, setShowChatHint] = useState(
+    () => window.localStorage.getItem(CHAT_HINT_KEY) !== "true",
+  );
   const [draft, setDraft] = useState("");
   const [isSending, setIsSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -64,6 +68,11 @@ export default function MainLayout() {
     ]);
   };
 
+  const dismissChatHint = () => {
+    window.localStorage.setItem(CHAT_HINT_KEY, "true");
+    setShowChatHint(false);
+  };
+
   return (
     <div className="min-h-screen bg-[#f5f5ef]">
       <div className="mx-auto max-w-[1600px]">
@@ -79,6 +88,28 @@ export default function MainLayout() {
       </div>
 
       <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+        {!isOpen && showChatHint && (
+          <div
+            role="tooltip"
+            className="flex w-[min(280px,calc(100vw-2.5rem))] items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-xl"
+          >
+            <div>
+              <p className="font-semibold text-slate-900">Kurt's AI chatbot</p>
+              <p className="mt-1 leading-relaxed">
+                Ask about projects, skills, or experience.
+              </p>
+            </div>
+            <button
+              type="button"
+              aria-label="Dismiss chatbot tip"
+              onClick={dismissChatHint}
+              className="shrink-0 rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
+            >
+              <X className="h-4 w-4" />
+            </button>
+          </div>
+        )}
+
         {isOpen && (
           <div className="flex w-[340px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl ring-1 ring-slate-100">
             <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
@@ -166,7 +197,12 @@ export default function MainLayout() {
         <button
           type="button"
           aria-label="Open chat"
-          onClick={() => setIsOpen((current) => !current)}
+          onClick={() => {
+            if (!isOpen) {
+              dismissChatHint();
+            }
+            setIsOpen((current) => !current);
+          }}
           className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white shadow-lg shadow-slate-900/15 ring-4 ring-white transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-slate-800"
         >
           <MessageSquareText className="h-5 w-5" />

@@ -4,10 +4,9 @@ import {
   FolderClosed,
   Database,
   Wrench,
-  Star,
   User,
   MessageCircle,
-  Moon,
+  Mail,
   Sparkles,
 } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaDiscord } from "react-icons/fa6";
@@ -27,7 +26,6 @@ const nav = [
   { label: "Projects", to: "/projects", Icon: FolderClosed },
   { label: "Services", to: "/services", Icon: Database },
   { label: "Tools", to: "/tools", Icon: Wrench },
-  { label: "Case Studies", to: "/case-studies", Icon: Star },
   { label: "About", to: "/about", Icon: User },
   { label: "Contact", to: "/contact", Icon: MessageCircle },
 ];
@@ -60,6 +58,8 @@ export default function Sidebar() {
                 key={label}
                 href={href}
                 aria-label={label}
+                target="_blank"
+                rel="noreferrer"
                 className={`flex h-9 w-9 items-center justify-center rounded-full text-white transition-colors ${
                   active
                     ? "bg-blue-600 hover:bg-blue-700"
@@ -71,13 +71,13 @@ export default function Sidebar() {
             );
           })}
 
-          <button
-            type="button"
-            aria-label="Toggle theme"
+          <a
+            href={`mailto:${contactContent.email}`}
+            aria-label="Send email"
             className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white transition-colors hover:bg-slate-700"
           >
-            <Moon className="h-4 w-4" />
-          </button>
+            <Mail className="h-4 w-4" />
+          </a>
         </div>
       </div>
 

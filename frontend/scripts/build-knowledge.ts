@@ -43,11 +43,6 @@ add("profile", `About ${owner}`, [
   homeContent.summary,
 ]);
 
-add("home", `${owner}'s AI builds`, [
-  `AI builds ${owner} has worked on:`,
-  ...homeContent.aiBuilds.map((b) => `- ${b.title}: ${b.subtitle}`),
-]);
-
 for (const p of projects) {
   add("projects", p.title, [
     `Project by ${owner}: ${p.title} (${p.category}).`,

@@ -1,26 +1,18 @@
 export const projects = [
   {
-    title: "AI Job Match Assistant",
-    category: "AI Product",
+    title: "Job Hunter",
+    category: "Productivity",
     description:
-      "AI-powered platform that matches candidates to roles using semantic search and recommendation logic.",
+      "Personal AI-powered platform that tracks my job applications and generates CV to match job posts.",
     impact: "Improved hiring relevance and reduced manual review time.",
     tags: ["React", ".NET", "Azure OpenAI"],
   },
   {
-    title: "Planwise",
-    category: "Productivity",
+    title: "Software Engineering Helper",
+    category: "AI Product",
     description:
-      "Smart planning app with real-time collaboration and reminders for busy teams.",
+      "Smart planning app with Generative AI that will generates contents tailored to the initial input from the user.",
     impact: "Helped teams simplify planning and keep priorities visible.",
-    tags: ["TypeScript", "PostgreSQL", "SignalR"],
-  },
-  {
-    title: "DevMetrics Dashboard",
-    category: "Analytics",
-    description:
-      "Analytics dashboard visualizing team velocity and deployment health.",
-    impact: "Made delivery trends easier to monitor and act on quickly.",
-    tags: ["React", "SQL", "Grafana"],
+    tags: ["React", ".NET", "Azure OpenAI"],
   },
 ];

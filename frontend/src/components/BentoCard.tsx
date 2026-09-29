@@ -17,7 +17,7 @@ export default function BentoCard({
       flex
       h-full
       flex-col
-      rounded-[24px]
+      rounded-lg
       border
       p-6
       shadow-sm

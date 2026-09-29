@@ -2,6 +2,7 @@ import {
   Award,
   BriefcaseBusiness,
   GraduationCap,
+  Medal,
   type LucideIcon,
 } from "lucide-react";
 import { aboutContent } from "../../data/about";
@@ -113,8 +114,15 @@ export default function About() {
           </ol>
         </div>
       </section>
-
-      <h2 className="mt-10 text-xl font-bold text-slate-900">Certifications</h2>
+            
+       <div className="flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-700 ring-1 ring-slate-200">
+            <Medal className="h-5 w-5" />
+          </div>
+          <h2 id="history-heading" className="text-xl font-bold text-slate-900">
+            Certifications
+          </h2>
+        </div>
       <ul className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
         {certifications.map((cert) => {
           const Icon = certificationIconMap[cert.icon ?? "award"] ?? Award;

@@ -20,4 +20,25 @@ export const services = [
     overview:
       "I translate AI ideas into practical workflows, from intelligent search and copilots to workflow automation that saves real operational time.",
   },
+    {
+    title: "Report Development",
+    badge: "Analytics",
+    description: "Power BI & SQL reporting.",
+    overview:
+      "I create insightful and actionable reports, transforming raw data into clear visualizations that drive informed decision-making.",
+  },
+    {
+    title: "Low-Code No-Code Development",
+    badge: "Development",
+    description: "Mendix",
+    overview:
+      "I build applications using low-code/no-code platforms like Mendix, enabling rapid development and deployment of business solutions.",
+  },
+    {
+    title: "Automation",
+    badge: "Automation",
+    description: "Power Automate, n8n",
+    overview:
+      "I design and implement automation solutions that streamline repetitive tasks, improve efficiency, and reduce operational overhead.",
+  },
 ];

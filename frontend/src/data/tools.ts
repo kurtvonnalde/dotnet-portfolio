@@ -1,7 +1,7 @@
 export const skills = [
   { name: "Python", category: "Language", icon: "python", color: "#3776AB" },
   { name: "Supabase", category: "Framework", icon: "supabase", color: "#54C5F8" },
-  { name: "Power BI", category: "Business Intelligence", icon: "powerbi", color: "#E95420", featured: true },
+  { name: "Power BI", category: "Business Intelligence", icon: "powerbi", color: "#F2C811", featured: true },
   { name: "Git Source Control", category: "Version control", icon: "git", color: "#F05032" },
   { name: "Azure DevOps", category: "Business platform", icon: "devops", color: "#5E64FF" },
   { name: "MongoDB", category: "Database", icon: "mongodb", color: "#47A248" },
@@ -14,6 +14,7 @@ export const skills = [
   { name: "Azure", category: "Cloud", icon: "azure", color: "#FF9900" },
   { name: "Microsoft Foundry", category: "AI platform", icon: "foundry", color: "#0078D4" },
   { name: "OpenAI", category: "AI platform", icon: "openai", color: "#111827" },
+  { name: "Github Copilot", category: "AI Tool", icon: "ghcp", color: "#111827" },
 ];
 
 export const technologies = skills.map((skill) => skill.name);

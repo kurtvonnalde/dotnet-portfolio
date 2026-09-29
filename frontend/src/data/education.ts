@@ -11,7 +11,7 @@ export const education: EducationEntry[] = [
   {
     id: "bachelors-degree",
     startYear: 2018,
-    period: "2018 - 2022",
+    period: "2018 - 2023",
     qualification: "B.S. in Information Technology",
     institution: "La Salle University - Ozamiz City",
     description: "Sample education entry for previewing the timeline.",

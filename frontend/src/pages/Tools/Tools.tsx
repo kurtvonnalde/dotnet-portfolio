@@ -12,7 +12,7 @@ import {
 import { SiCss, SiHtml5 } from "react-icons/si";
 import type { IconType } from "react-icons";
 import { skills } from "../../data/tools";
-import { BiBarChartAlt2, BiBrain, BiCloud, BiGitBranch, BiBot } from "react-icons/bi";
+import { BiBarChartAlt2, BiBrain, BiCloud, BiGitBranch, BiBot, BiLogoGithub } from "react-icons/bi";
 
 const skillIcons: Record<string, IconType> = {
   python: SiPython,
@@ -29,6 +29,7 @@ const skillIcons: Record<string, IconType> = {
   azure: BiCloud,
   foundry: BiBrain,
   openai: BiBot,
+  ghcp: BiLogoGithub
 };
 
 export default function Tools() {
@@ -52,17 +53,9 @@ export default function Tools() {
           return (
             <li
               key={skill.name}
-              className={`flex min-h-32 flex-col justify-between rounded-lg border p-4 transition-colors ${
-                skill.featured
-                  ? "border-amber-300 bg-amber-50"
-                  : "border-slate-200 bg-white hover:border-slate-300"
-              }`}
+              className="group flex min-h-32 flex-col justify-between rounded-lg border border-slate-200 bg-white p-4 transition-colors hover:border-amber-300 hover:bg-amber-50"
             >
-              <div
-                className={`flex h-11 w-11 items-center justify-center rounded-md ${
-                  skill.featured ? "bg-amber-100" : "bg-slate-50"
-                }`}
-              >
+              <div className="flex h-11 w-11 items-center justify-center rounded-md bg-slate-50 transition-colors group-hover:bg-amber-100">
                 {skill.icon === "htmlCss" ? (
                   <span className="flex items-center gap-1" aria-hidden="true">
                     <SiHtml5 className="h-5 w-5" style={{ color: "#E34F26" }} />

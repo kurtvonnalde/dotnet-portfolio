@@ -5,7 +5,7 @@
 Portfolio content lives in `src/data/`, split by section so each area is quick to find:
 
 - `profile.ts`: name, initials, role, and handle
-- `home.ts`: hero copy and featured AI builds
+- `home.ts`: hero copy
 - `projects.ts`: project list
 - `about.ts`: biography
 - `education.ts`: education timeline entries
