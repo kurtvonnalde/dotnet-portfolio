@@ -148,7 +148,7 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
       <div className="mt-auto border-t border-slate-200 pt-4">
         <a
-          href="/doc/cv-placeholder.pdf"
+          href="/doc/Kurt-Vonn-Alde-CV.pdf"
           download="Kurt-Vonn-Alde-CV.pdf"
           aria-label="Download CV"
           title={collapsed ? "Download CV" : undefined}
