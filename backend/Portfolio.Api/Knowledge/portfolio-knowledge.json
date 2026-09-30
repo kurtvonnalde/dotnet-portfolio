@@ -6,105 +6,111 @@
     "text": "Kurt Vonn Alde (@kurtvonnalde) is a Full Stack Developer.\nI'm a full-stack developer with 3+ years building reliable web apps. I care about clean architecture, great DX, and shipping software that keeps running long after launch.\nTagline: \"Build it once. Run it forever.\"\nFull-stack developer focused on React, .NET, Azure and AI-powered applications."
   },
   {
-    "id": "home-kurt-vonn-alde-s-ai-builds-1",
-    "source": "home",
-    "title": "Kurt Vonn Alde's AI builds",
-    "text": "AI builds Kurt Vonn Alde has worked on:\n- Resume Parser: LLM + embeddings\n- Support Copilot: RAG over docs\n- Code Reviewer: Agentic workflow"
-  },
-  {
-    "id": "projects-ai-job-match-assistant-2",
+    "id": "projects-job-hunter-1",
     "source": "projects",
-    "title": "AI Job Match Assistant",
-    "text": "Project by Kurt Vonn Alde: AI Job Match Assistant (AI Product).\nAI-powered platform that matches candidates to roles using semantic search and recommendation logic.\nImpact: Improved hiring relevance and reduced manual review time.\nTech stack: React, .NET, Azure OpenAI."
+    "title": "Job Hunter",
+    "text": "Project by Kurt Vonn Alde: Job Hunter (Productivity).\nPersonal AI-powered platform that tracks my job applications and generates CV to match job posts.\nImpact: Improved hiring relevance and reduced manual review time.\nTech stack: React, .NET, Azure OpenAI."
   },
   {
-    "id": "projects-planwise-3",
+    "id": "projects-software-engineering-helper-2",
     "source": "projects",
-    "title": "Planwise",
-    "text": "Project by Kurt Vonn Alde: Planwise (Productivity).\nSmart planning app with real-time collaboration and reminders for busy teams.\nImpact: Helped teams simplify planning and keep priorities visible.\nTech stack: TypeScript, PostgreSQL, SignalR."
+    "title": "Software Engineering Helper",
+    "text": "Project by Kurt Vonn Alde: Software Engineering Helper (AI Product).\nSmart planning app with Generative AI that will generates contents tailored to the initial input from the user.\nImpact: Helped teams simplify planning and keep priorities visible.\nTech stack: React, .NET, Azure OpenAI."
   },
   {
-    "id": "projects-devmetrics-dashboard-4",
-    "source": "projects",
-    "title": "DevMetrics Dashboard",
-    "text": "Project by Kurt Vonn Alde: DevMetrics Dashboard (Analytics).\nAnalytics dashboard visualizing team velocity and deployment health.\nImpact: Made delivery trends easier to monitor and act on quickly.\nTech stack: React, SQL, Grafana."
-  },
-  {
-    "id": "case-studies-scaling-checkout-to-1m-orders-5",
+    "id": "case-studies-scaling-checkout-to-1m-orders-3",
     "source": "case-studies",
     "title": "Scaling Checkout to 1M Orders",
     "text": "Case study by Kurt Vonn Alde: Scaling Checkout to 1M Orders for client Northwind Labs (Growth).\nSummary: Rebuilt the checkout pipeline to survive peak traffic.\nProblem: The legacy checkout buckled under Black Friday load, dropping orders.\nSolution: Re-architected with .NET queues and Azure autoscaling for elastic throughput.\nOutcome: Handled 1M+ orders with zero downtime and 40% faster checkout.\nTech stack: .NET, Azure, SQL."
   },
   {
-    "id": "case-studies-ai-support-copilot-6",
+    "id": "case-studies-ai-support-copilot-4",
     "source": "case-studies",
     "title": "AI Support Copilot",
     "text": "Case study by Kurt Vonn Alde: AI Support Copilot for client Helpwise (Efficiency).\nSummary: Cut support response time with a RAG-powered assistant.\nProblem: Agents spent hours digging through docs to answer tickets.\nSolution: Built a retrieval-augmented copilot grounded in the knowledge base.\nOutcome: Reduced average handle time by 55% in the first month.\nTech stack: React, Azure OpenAI, TypeScript."
   },
   {
-    "id": "certifications-mendix-intermediate-developer-7",
+    "id": "certifications-mendix-intermediate-developer-5",
     "source": "certifications",
     "title": "Mendix Intermediate Developer",
     "text": "Kurt Vonn Alde holds the \"Mendix Intermediate Developer\" certification issued by Mendix in 2024 (Verified).\nBuilt and validated no-code app workflows with reusable logic, data models, and user-facing interfaces."
   },
   {
-    "id": "services-web-app-development-8",
+    "id": "services-web-app-development-6",
     "source": "services",
     "title": "Web App Development",
     "text": "Service offered by Kurt Vonn Alde: Web App Development (Build) - React & .NET end-to-end.\nFrom product strategy to polished delivery, I design and ship web experiences that are fast, scalable, and easy to maintain."
   },
   {
-    "id": "services-cloud-devops-9",
+    "id": "services-cloud-devops-7",
     "source": "services",
     "title": "Cloud & DevOps",
     "text": "Service offered by Kurt Vonn Alde: Cloud & DevOps (Deploy) - Azure deployments & CI/CD.\nI set up reliable delivery pipelines, Azure infrastructure, and deployment workflows so products can move from prototype to production smoothly."
   },
   {
-    "id": "services-ai-integration-10",
+    "id": "services-ai-integration-8",
     "source": "services",
     "title": "AI Integration",
     "text": "Service offered by Kurt Vonn Alde: AI Integration (Innovate) - LLM features & automation.\nI translate AI ideas into practical workflows, from intelligent search and copilots to workflow automation that saves real operational time."
   },
   {
-    "id": "employment-software-engineer-at-alliance-software-inc-11",
+    "id": "services-report-development-9",
+    "source": "services",
+    "title": "Report Development",
+    "text": "Service offered by Kurt Vonn Alde: Report Development (Analytics) - Power BI & SQL reporting.\nI create insightful and actionable reports, transforming raw data into clear visualizations that drive informed decision-making."
+  },
+  {
+    "id": "services-low-code-no-code-development-10",
+    "source": "services",
+    "title": "Low-Code No-Code Development",
+    "text": "Service offered by Kurt Vonn Alde: Low-Code No-Code Development (Development) - Mendix\nI build applications using low-code/no-code platforms like Mendix, enabling rapid development and deployment of business solutions."
+  },
+  {
+    "id": "services-automation-11",
+    "source": "services",
+    "title": "Automation",
+    "text": "Service offered by Kurt Vonn Alde: Automation (Automation) - Power Automate, n8n\nI design and implement automation solutions that streamline repetitive tasks, improve efficiency, and reduce operational overhead."
+  },
+  {
+    "id": "employment-software-engineer-at-alliance-software-inc-12",
     "source": "employment",
     "title": "Software Engineer at Alliance Software Inc.",
     "text": "Kurt Vonn Alde worked as Software Engineer at Alliance Software Inc. (March 2023 - March 2025).\nSample employment entry for previewing the timeline."
   },
   {
-    "id": "employment-custom-software-engineer-at-accenture-inc-12",
+    "id": "employment-custom-software-engineer-at-accenture-inc-13",
     "source": "employment",
     "title": "Custom Software Engineer at Accenture Inc.",
     "text": "Kurt Vonn Alde worked as Custom Software Engineer at Accenture Inc. (March 2025 - Present).\nSample employment entry for previewing the timeline."
   },
   {
-    "id": "education-b-s-in-information-technology-la-salle-university-ozamiz-city-13",
+    "id": "education-b-s-in-information-technology-la-salle-university-ozamiz-city-14",
     "source": "education",
     "title": "B.S. in Information Technology - La Salle University - Ozamiz City",
-    "text": "Kurt Vonn Alde completed B.S. in Information Technology at La Salle University - Ozamiz City (2018 - 2022).\nSample education entry for previewing the timeline."
+    "text": "Kurt Vonn Alde completed B.S. in Information Technology at La Salle University - Ozamiz City (2018 - 2023).\nSample education entry for previewing the timeline."
   },
   {
-    "id": "education-internship-lexmark-research-and-development-14",
+    "id": "education-internship-lexmark-research-and-development-15",
     "source": "education",
     "title": "Internship - Lexmark Research and Development",
     "text": "Kurt Vonn Alde completed Internship at Lexmark Research and Development (September 2022 - December 2022).\nSample education entry for previewing the timeline."
   },
   {
-    "id": "tools-kurt-vonn-alde-s-technologies-15",
+    "id": "tools-kurt-vonn-alde-s-technologies-16",
     "source": "tools",
     "title": "Kurt Vonn Alde's technologies",
-    "text": "Core technologies Kurt Vonn Alde uses: Python, Supabase, Power BI, Git Source Control, Azure DevOps, MongoDB, HTML & CSS, JavaScript, Github, .NET, React JS/TS, MySQL, Azure, Microsoft Foundry, OpenAI."
+    "text": "Core technologies Kurt Vonn Alde uses: Python, Supabase, Power BI, Git Source Control, Azure DevOps, MongoDB, HTML & CSS, JavaScript, Github, .NET, React JS/TS, MySQL, Azure, Microsoft Foundry, OpenAI, Github Copilot."
   },
   {
-    "id": "tools-kurt-vonn-alde-s-skills-and-tools-16",
+    "id": "tools-kurt-vonn-alde-s-skills-and-tools-17",
     "source": "tools",
     "title": "Kurt Vonn Alde's skills and tools",
-    "text": "Skills and tools Kurt Vonn Alde works with, by category:\n- Language: Python, JavaScript\n- Framework: Supabase, .NET, React JS/TS\n- Business Intelligence: Power BI\n- Version control: Git Source Control\n- Business platform: Azure DevOps\n- Database: MongoDB, MySQL\n- Web: HTML & CSS\n- Platform: Github\n- Cloud: Azure\n- AI platform: Microsoft Foundry, OpenAI"
+    "text": "Skills and tools Kurt Vonn Alde works with, by category:\n- Language: Python, JavaScript\n- Framework: Supabase, .NET, React JS/TS\n- Business Intelligence: Power BI\n- Version control: Git Source Control\n- Business platform: Azure DevOps\n- Database: MongoDB, MySQL\n- Web: HTML & CSS\n- Platform: Github\n- Cloud: Azure\n- AI platform: Microsoft Foundry, OpenAI\n- AI Tool: Github Copilot"
   },
   {
-    "id": "contact-contacting-kurt-vonn-alde-17",
+    "id": "contact-contacting-kurt-vonn-alde-18",
     "source": "contact",
     "title": "Contacting Kurt Vonn Alde",
-    "text": "Let's build something together.\nKurt Vonn Alde can be reached through: Facebook, LinkedIn, Discord.\nVisitors can use the Contact page of this website to get in touch."
+    "text": "Let's build something together.\nKurt Vonn Alde can be reached through: Facebook, LinkedIn, Discord.\n- Facebook: https://www.facebook.com/\n- LinkedIn: https://www.linkedin.com/in/kurt-vonn-alde/\n- Discord: https://discord.com/\nVisitors can use the Contact page of this website to get in touch."
   }
 ]

@@ -15,6 +15,7 @@ const MAX_HISTORY = 6;
 const CHAT_HINT_KEY = "krawl-chat-hint-seen";
 
 export default function MainLayout() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [showChatHint, setShowChatHint] = useState(
     () => window.localStorage.getItem(CHAT_HINT_KEY) !== "true",
@@ -76,8 +77,17 @@ export default function MainLayout() {
   return (
     <div className="min-h-screen bg-[#f5f5ef]">
       <div className="mx-auto max-w-[1600px]">
-        <div className="grid grid-cols-1 lg:grid-cols-[260px_minmax(0,1fr)]">
-          <Sidebar />
+        <div
+          className={`grid grid-cols-1 ${
+            isSidebarCollapsed
+              ? "lg:grid-cols-[64px_minmax(0,1fr)]"
+              : "lg:grid-cols-[260px_minmax(0,1fr)]"
+          }`}
+        >
+          <Sidebar
+            collapsed={isSidebarCollapsed}
+            onToggle={() => setIsSidebarCollapsed((current) => !current)}
+          />
 
           <main className="min-w-0 p-6 lg:p-8">
             <div className="mx-auto w-full min-w-0 max-w-6xl">
