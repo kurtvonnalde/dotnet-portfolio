@@ -11,6 +11,7 @@ import {
   ChevronRight,
   ArrowRight,
   Sparkles,
+  Download,
 } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaDiscord } from "react-icons/fa6";
 import { MdVerified } from "react-icons/md";
@@ -129,8 +130,8 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
 
       <Link
         to="/contact"
-        className={`mt-auto flex items-center gap-3 rounded-xl bg-indigo-50 p-3 text-slate-800 transition-colors hover:bg-indigo-100 ${
-          collapsed ? "lg:hidden" : "mt-6"
+        className={`mt-6 flex items-center gap-3 rounded-xl bg-indigo-50 p-3 text-slate-800 transition-colors hover:bg-indigo-100 ${
+          collapsed ? "lg:hidden" : ""
         }`}
       >
         <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
@@ -146,6 +147,18 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
       </Link>
 
       <div className="mt-auto border-t border-slate-200 pt-4">
+        <a
+          href="/doc/cv-placeholder.pdf"
+          download="Kurt-Vonn-Alde-CV.pdf"
+          aria-label="Download CV"
+          title={collapsed ? "Download CV" : undefined}
+          className={`mb-3 flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-700 ${
+            collapsed ? "lg:mx-auto lg:mb-3 lg:h-10 lg:w-10 lg:px-0" : "w-full"
+          }`}
+        >
+          <Download className="h-4 w-4 shrink-0" />
+          <span className={collapsed ? "lg:hidden" : ""}>Download CV</span>
+        </a>
         <button
           type="button"
           aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
