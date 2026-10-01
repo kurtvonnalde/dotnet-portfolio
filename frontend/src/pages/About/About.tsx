@@ -40,7 +40,7 @@ export default function About() {
     <section>
       <h1 className="text-3xl font-extrabold text-slate-900">About</h1>
 
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-slate-600">
+      <p className="mt-4 text-lg leading-relaxed text-slate-600">
         {aboutContent.description}
       </p>
 
@@ -70,11 +70,6 @@ export default function About() {
                 ? "text-sky-700 bg-sky-50 ring-sky-100"
                 : "text-blue-700 bg-blue-50 ring-blue-100";
               const markerClass = isEducation ? "bg-sky-500" : "bg-blue-700";
-              const sideClass =
-                index % 2 === 0
-                  ? "lg:col-start-1 lg:text-right"
-                  : "lg:col-start-3";
-
               return (
                 <li
                   key={entry.id}
@@ -85,7 +80,7 @@ export default function About() {
                     className={`absolute left-0 top-5 h-3 w-3 rounded-full border-2 border-white ring-1 ring-slate-200 lg:static lg:col-start-2 lg:row-start-1 lg:mt-5 lg:justify-self-center ${markerClass}`}
                   />
                   <article
-                    className={`rounded-md border border-slate-200 bg-white p-4 ${sideClass}`}
+                    className={`rounded-md border border-slate-200 bg-white p-4 ${index % 2 === 0 ? "lg:col-start-1" : "lg:col-start-3"}`}
                   >
                     <div
                       className={`mb-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${colorClass}`}
