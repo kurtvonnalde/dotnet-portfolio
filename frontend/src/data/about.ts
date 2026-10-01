@@ -1,4 +1,4 @@
 export const aboutContent = {
   description:
-    "I'm a full-stack developer with 3+ years building reliable web apps. I care about clean architecture, great DX, and shipping software that keeps running long after launch.",
-};
+    "Software Engineer with 3+ years of experience delivering full-stack applications, AI-powered solutions, cloud-based  services, data analytics, automation, and low-code applications. Hands-on experience with React, TypeScript, .NET,  Node.js, Python, Microsoft Azure, SQL, Power BI, Power Automate, and Mendix. Experienced in translating stakeholder requirements into technical solutions and supporting applications through development, deployment, and production delivery",
+  };
