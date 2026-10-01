@@ -23,7 +23,7 @@ const serviceIcons: Record<string, LucideIcon> = {
 const serviceTags: Record<string, string[]> = {
   "Web App Development": ["React", ".NET", "Azure", "TypeScript"],
   "Cloud & DevOps": ["Azure", "Docker", "GitHub Actions", "CI/CD"],
-  "AI Integration": ["Azure OpenAI", "OpenAI", "LangChain", "RAG"],
+  "AI Integration": ["Azure OpenAI/Foundry", "OpenAI", "RAG"],
   "Report Development": ["Power BI", "SQL Server", "Excel"],
   "Low-Code No-Code Development": ["Mendix", "Power Apps", "SharePoint"],
   Automation: ["Power Automate", "n8n", "Logic Apps"],
