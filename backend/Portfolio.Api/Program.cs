@@ -30,7 +30,14 @@ builder.Services.AddHttpClient<OpenAiClient>((sp, client) =>
 {
     var rag = sp.GetRequiredService<IOptions<RagOptions>>().Value;
     client.BaseAddress = new Uri(rag.BaseUrl.TrimEnd('/') + "/");
-    client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", rag.ApiKey);
+    if (string.Equals(rag.ApiKeyHeader, "Authorization", StringComparison.OrdinalIgnoreCase))
+    {
+        client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", rag.ApiKey);
+    }
+    else
+    {
+        client.DefaultRequestHeaders.TryAddWithoutValidation(rag.ApiKeyHeader, rag.ApiKey);
+    }
     client.Timeout = TimeSpan.FromSeconds(60);
 });
 builder.Services.AddScoped<IChatService, RagChatService>();

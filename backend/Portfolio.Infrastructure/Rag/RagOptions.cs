@@ -7,6 +7,9 @@ public sealed class RagOptions
     // Any OpenAI-compatible endpoint (OpenAI, Azure OpenAI v1, etc.).
     public string BaseUrl { get; set; } = "https://api.openai.com/v1/";
 
+    // "Authorization" sends "Bearer {ApiKey}" (OpenAI); any other value sends "{ApiKeyHeader}: {ApiKey}" (e.g. Azure's "api-key").
+    public string ApiKeyHeader { get; set; } = "Authorization";
+
     public string ApiKey { get; set; } = string.Empty;
 
     public string ChatModel { get; set; } = "gpt-4o-mini";
