@@ -1,23 +1,9 @@
-import { Link, NavLink } from "react-router-dom";
-import {
-  Home,
-  FolderClosed,
-  Database,
-  Wrench,
-  User,
-  MessageCircle,
-  Mail,
-  ChevronLeft,
-  ChevronRight,
-  ArrowRight,
-  Sparkles,
-  Download,
-} from "lucide-react";
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { ChevronDown, ChevronRight, FileCode, Folder, FolderOpen } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaDiscord } from "react-icons/fa6";
-import { MdVerified } from "react-icons/md";
-import type { LucideIcon } from "lucide-react";
-import { contactContent } from "../data/contact";
 import { profile } from "../data/profile";
+import { contactContent } from "../data/contact";
 
 const socialIcons = {
   facebook: FaFacebookF,
@@ -27,62 +13,79 @@ const socialIcons = {
 
 type NavItem = {
   label: string;
-  detail: string;
+  file: string;
   to: string;
-  Icon: LucideIcon;
   end?: boolean;
 };
 
-const mainNav: NavItem[] = [
-  { label: "Home", detail: "Overview & updates", to: "/", Icon: Home, end: true },
-  { label: "Projects", detail: "Featured work", to: "/projects", Icon: FolderClosed },
-  { label: "Services", detail: "What I offer", to: "/services", Icon: Database },
-  { label: "Tools", detail: "Tech stack & tools", to: "/tools", Icon: Wrench },
+const pagesNav: NavItem[] = [
+  { label: "Home", file: "Home.tsx", to: "/", end: true },
+  { label: "Projects", file: "Projects.tsx", to: "/projects" },
+  { label: "Services", file: "Services.tsx", to: "/services" },
+  { label: "Tools", file: "Tools.tsx", to: "/tools" },
 ];
 
-const secondaryNav: NavItem[] = [
-  { label: "About", detail: "My journey", to: "/about", Icon: User },
-  { label: "Contact", detail: "Let's work together", to: "/contact", Icon: MessageCircle },
+const profileNav: NavItem[] = [
+  { label: "About", file: "About.tsx", to: "/about" },
+  { label: "Contact", file: "Contact.tsx", to: "/contact" },
 ];
 
-type SidebarProps = {
-  collapsed: boolean;
-  onToggle: () => void;
-};
+export default function Sidebar() {
+  const [rootOpen, setRootOpen] = useState(true);
+  const [pagesOpen, setPagesOpen] = useState(true);
+  const [profileOpen, setProfileOpen] = useState(true);
 
-export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
   return (
-    <aside
-      className={`flex min-h-screen flex-col border-r border-slate-200 bg-[#f5f5ef] p-6 lg:sticky lg:top-0 lg:h-screen lg:min-h-0 lg:self-start lg:overflow-y-auto ${
-        collapsed ? "lg:px-2" : ""
-      }`}
-    >
-      <section
-        className={`rounded-2xl bg-gradient-to-br from-[#26366f] via-[#182344] to-[#312765] p-4 text-center text-white shadow-lg shadow-indigo-950/10 ${
-          collapsed ? "lg:bg-none lg:p-0 lg:shadow-none" : ""
-        }`}
-        aria-label="Profile"
-      >
-        <div className={`relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-white/10 text-xl font-bold ring-2 ring-white/15 ${
-          collapsed ? "lg:h-8 lg:w-8 lg:text-xs" : ""
-        }`}>
-          {profile.initials}
-          <span className={`absolute bottom-0 right-0 h-4 w-4 rounded-full border-2 border-[#1b2854] bg-emerald-400 ${
-            collapsed ? "lg:h-2.5 lg:w-2.5" : ""
-          }`} />
-        </div>
+    <aside className="workspace-sidebar flex h-full w-full flex-col overflow-y-auto border-r lg:w-[260px]">
+      <div className="px-4 pb-2 pt-4">
+        <span className="workspace-sidebar-heading text-[11px] font-semibold uppercase tracking-[0.12em]">
+          Explorer
+        </span>
+      </div>
 
-        <h2 className={`mt-3 flex items-center justify-center gap-1.5 text-base font-bold ${collapsed ? "lg:hidden" : ""}`}>
-          {profile.name}
-          <MdVerified className="h-4 w-4 shrink-0 text-sky-400" />
-        </h2>
-        <p className={`mt-1 text-xs text-slate-300 ${collapsed ? "lg:hidden" : ""}`}>
-          {profile.role}
-        </p>
-        <div className={`mt-4 flex justify-center gap-2 border-t border-white/10 pt-4 ${collapsed ? "lg:hidden" : ""}`}>
+      <div className="workspace-sidebar-rule flex items-center gap-2 border-b px-3 pb-3 pt-1">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--avatar-bg)] text-[11px] font-bold text-white">
+          {profile.initials}
+        </span>
+        <div className="min-w-0">
+          <p className="workspace-sidebar-title truncate text-xs font-semibold">{profile.name}</p>
+          <p className="workspace-sidebar-muted truncate text-[10px]">{profile.role}</p>
+        </div>
+      </div>
+
+      <nav className="flex-1 py-2 text-[13px]">
+        <FolderRow
+          depth={0}
+          label={profile.name.toUpperCase()}
+          open={rootOpen}
+          onToggle={() => setRootOpen((current) => !current)}
+        />
+
+        {rootOpen && (
+          <>
+            <FolderRow
+              depth={1}
+              label="pages"
+              open={pagesOpen}
+              onToggle={() => setPagesOpen((current) => !current)}
+            />
+            {pagesOpen && pagesNav.map((item) => <FileRow key={item.to} depth={2} item={item} />)}
+
+            <FolderRow
+              depth={1}
+              label="profile"
+              open={profileOpen}
+              onToggle={() => setProfileOpen((current) => !current)}
+            />
+            {profileOpen && profileNav.map((item) => <FileRow key={item.to} depth={2} item={item} />)}
+          </>
+        )}
+      </nav>
+
+      <div className="workspace-sidebar-rule border-t px-3 py-3">
+        <div className="flex items-center justify-center gap-1">
           {contactContent.socials.map(({ platform, label, href }) => {
             const Icon = socialIcons[platform];
-            const active = platform === "linkedin";
             return (
               <a
                 key={label}
@@ -90,124 +93,67 @@ export default function Sidebar({ collapsed, onToggle }: SidebarProps) {
                 aria-label={label}
                 target="_blank"
                 rel="noreferrer"
-                className={`flex h-9 w-9 items-center justify-center rounded-lg text-white transition-colors ${
-                  active
-                    ? "bg-blue-600 hover:bg-blue-500"
-                    : "bg-white/10 hover:bg-white/20"
-                }`}
+                className="workspace-sidebar-muted workspace-sidebar-hover flex h-7 w-7 items-center justify-center rounded transition-colors hover:text-[var(--chrome-text)]"
               >
-                <Icon className="h-4 w-4" />
+                <Icon className="h-3.5 w-3.5" />
               </a>
             );
           })}
-
-          <a
-            href={`mailto:${contactContent.email}`}
-            aria-label="Send email"
-            className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-white transition-colors hover:bg-white/20"
-          >
-            <Mail className="h-4 w-4" />
-          </a>
         </div>
-
-      </section>
-
-      <nav id="primary-navigation" className="mt-6 space-y-5">
-        <div>
-          <p className={`mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400 ${collapsed ? "lg:hidden" : ""}`}>
-            Main
-          </p>
-          <div className="space-y-1">{renderNavItems(mainNav, collapsed)}</div>
-        </div>
-
-        <div className="border-t border-slate-200 pt-4">
-          <p className={`mb-2 px-3 text-[10px] font-semibold uppercase tracking-[0.14em] text-slate-400 ${collapsed ? "lg:hidden" : ""}`}>
-            More
-          </p>
-          <div className="space-y-1">{renderNavItems(secondaryNav, collapsed)}</div>
-        </div>
-      </nav>
-
-      <Link
-        to="/contact"
-        className={`mt-6 flex items-center gap-3 rounded-xl bg-indigo-50 p-3 text-slate-800 transition-colors hover:bg-indigo-100 ${
-          collapsed ? "lg:hidden" : ""
-        }`}
-      >
-        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-indigo-100 text-indigo-600">
-          <Sparkles className="h-4 w-4" />
-        </span>
-        <span className="min-w-0 flex-1">
-          <span className="block text-xs font-semibold">Let's build something great!</span>
-          <span className="mt-0.5 block text-[11px] leading-snug text-slate-500">
-            Have a project in mind? Let's talk.
-          </span>
-        </span>
-        <ArrowRight className="h-4 w-4 shrink-0 text-indigo-500" />
-      </Link>
-
-      <div className="mt-auto border-t border-slate-200 pt-4">
-        <a
-          href="/doc/Kurt-Vonn-Alde-CV.pdf"
-          download="Kurt-Vonn-Alde-CV.pdf"
-          aria-label="Download CV"
-          title={collapsed ? "Download CV" : undefined}
-          className={`mb-3 flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-3 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-slate-700 ${
-            collapsed ? "lg:mx-auto lg:mb-3 lg:h-10 lg:w-10 lg:px-0" : "w-full"
-          }`}
-        >
-          <Download className="h-4 w-4 shrink-0" />
-          <span className={collapsed ? "lg:hidden" : ""}>Download CV</span>
-        </a>
-        <button
-          type="button"
-          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          aria-expanded={!collapsed}
-          aria-controls="primary-navigation"
-          title={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-          onClick={onToggle}
-          className={`ml-auto hidden items-center justify-center rounded-md p-2 text-slate-500 transition hover:bg-white hover:text-slate-900 lg:flex ${
-            collapsed ? "lg:mx-auto" : ""
-          }`}
-        >
-          {collapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-        </button>
       </div>
-
     </aside>
   );
 }
 
-function renderNavItems(
-  items: NavItem[],
-  collapsed: boolean,
-) {
-  return items.map(({ label, detail, to, Icon, end }) => (
+function FolderRow({
+  depth,
+  label,
+  open,
+  onToggle,
+}: {
+  depth: number;
+  label: string;
+  open: boolean;
+  onToggle: () => void;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onToggle}
+      aria-expanded={open}
+      className="workspace-sidebar-hover flex w-full items-center gap-1 py-[3px] pr-2 text-left"
+      style={{ paddingLeft: 8 + depth * 14 }}
+    >
+      {open ? (
+        <ChevronDown className="h-3.5 w-3.5 shrink-0" />
+      ) : (
+        <ChevronRight className="h-3.5 w-3.5 shrink-0" />
+      )}
+      {open ? (
+        <FolderOpen className="h-4 w-4 shrink-0 text-[var(--folder-color)]" />
+      ) : (
+        <Folder className="h-4 w-4 shrink-0 text-[var(--folder-color)]" />
+      )}
+      <span className="truncate font-medium">{label}</span>
+    </button>
+  );
+}
+
+function FileRow({ depth, item }: { depth: number; item: NavItem }) {
+  return (
     <NavLink
-      key={label}
-      to={to}
-      end={end}
-      title={collapsed ? `${label} · ${detail}` : undefined}
-      aria-label={label}
+      to={item.to}
+      end={item.end}
+      title={item.label}
+      style={{ paddingLeft: 8 + depth * 14 + 16 }}
       className={({ isActive }) =>
-        `flex items-center gap-3 rounded-xl border-l-2 px-3 py-2.5 transition-colors ${
-          collapsed ? "lg:justify-center lg:px-0" : ""
-        } ${
-          isActive
-            ? "border-indigo-500 bg-indigo-50 text-slate-950"
-            : "border-transparent text-slate-600 hover:bg-white hover:text-slate-950"
+        `flex items-center gap-1.5 py-[3px] pr-2 transition-colors ${
+          isActive ? "workspace-sidebar-active" : "workspace-sidebar-hover"
         }`
       }
     >
-      {({ isActive }) => (
-        <>
-          <Icon className={`h-5 w-5 shrink-0 ${isActive ? "text-indigo-600" : "text-slate-500"}`} />
-          <span className={`min-w-0 ${collapsed ? "lg:hidden" : ""}`}>
-            <span className="block text-sm font-semibold leading-tight">{label}</span>
-            <span className="mt-0.5 block text-[11px] leading-tight text-slate-500">{detail}</span>
-          </span>
-        </>
-      )}
+      <FileCode className="h-4 w-4 shrink-0 text-[var(--file-color)]" />
+      <span className="truncate">{item.file}</span>
     </NavLink>
-  ));
+  );
 }

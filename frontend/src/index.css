@@ -17,6 +17,186 @@ body {
   color: #111827;
 }
 
+.workspace-shell {
+  --content-bg: #f5f5ef;
+  --activity-bg: #f3f3f3;
+  --sidebar-bg: #f3f3f3;
+  --tab-bg: #ececec;
+  --chrome-border: #e5e5e5;
+  --chrome-text: #3b3b3b;
+  --chrome-muted: #777777;
+  --chrome-hover: #e8e8e8;
+  --chrome-active: #ffffff;
+  --chrome-active-text: #252526;
+  --avatar-bg: #0078d4;
+  --folder-color: #c18b2c;
+  --file-color: #247ba0;
+  --chat-panel-bg: #ffffff;
+  --chat-header-bg: #f3f3f3;
+  --chat-input-bg: #f8f8f8;
+  --chat-assistant-bg: #f3f3f3;
+  --chat-text: #333333;
+  --chat-muted: #777777;
+  --chat-border: #dedede;
+  background: var(--content-bg);
+  color-scheme: light;
+}
+
+.workspace-shell[data-theme="dark"] {
+  --content-bg: #1e1e1e;
+  --activity-bg: #333333;
+  --sidebar-bg: #252526;
+  --tab-bg: #2d2d2d;
+  --chrome-border: #3c3c3c;
+  --chrome-text: #cccccc;
+  --chrome-muted: #9d9d9d;
+  --chrome-hover: #2a2d2e;
+  --chrome-active: #f5f5ef;
+  --chrome-active-text: #111827;
+  --avatar-bg: #0078d4;
+  --folder-color: #dcb67a;
+  --file-color: #519aba;
+  --chat-panel-bg: #1e1e1e;
+  --chat-header-bg: #252526;
+  --chat-input-bg: #303033;
+  --chat-assistant-bg: #2d2d2d;
+  --chat-text: #cccccc;
+  --chat-muted: #9d9d9d;
+  --chat-border: #3c3c3c;
+  color-scheme: dark;
+}
+
+.workspace-content {
+  background: var(--content-bg);
+}
+
+.workspace-activity-bar {
+  background: var(--activity-bg);
+  border-color: var(--chrome-border);
+}
+
+.workspace-sidebar {
+  background: var(--sidebar-bg);
+  border-color: var(--chrome-border);
+  color: var(--chrome-text);
+}
+
+.workspace-sidebar-heading {
+  color: var(--chrome-muted);
+}
+
+.workspace-sidebar-rule {
+  border-color: var(--chrome-border);
+}
+
+.workspace-sidebar-muted {
+  color: var(--chrome-muted);
+}
+
+.workspace-sidebar-title {
+  color: var(--chrome-text);
+}
+
+.workspace-sidebar-hover:hover {
+  background: var(--chrome-hover);
+}
+
+.workspace-sidebar-active {
+  background: var(--chrome-hover);
+  color: var(--chrome-text);
+}
+
+.workspace-tab-strip {
+  background: var(--tab-bg);
+  border-color: var(--chrome-border);
+}
+
+.workspace-tab {
+  background: var(--content-bg);
+  border-color: var(--chrome-border);
+  color: var(--chrome-text);
+}
+
+.workspace-theme-button {
+  color: var(--chrome-muted);
+}
+
+.workspace-theme-button:hover {
+  background: var(--chrome-hover);
+  color: var(--chrome-text);
+}
+
+.workspace-chat-panel {
+  background: var(--chat-panel-bg);
+  border-color: var(--chat-border);
+}
+
+.workspace-chat-header,
+.workspace-chat-footer {
+  background: var(--chat-header-bg);
+  border-color: var(--chat-border);
+}
+
+.workspace-chat-text {
+  color: var(--chat-text);
+}
+
+.workspace-chat-muted {
+  color: var(--chat-muted);
+}
+
+.workspace-chat-input {
+  background: var(--chat-input-bg);
+  border-color: var(--chat-border);
+  color: var(--chat-text);
+}
+
+.workspace-chat-assistant {
+  background: var(--chat-assistant-bg);
+  color: var(--chat-text);
+}
+
+.workspace-shell[data-theme="dark"] main [class~="bg-white"],
+.workspace-shell[data-theme="dark"] main [class~="bg-slate-50"],
+.workspace-shell[data-theme="dark"] main [class~="bg-slate-100"],
+.workspace-shell[data-theme="dark"] main [class~="bg-white/70"],
+.workspace-shell[data-theme="dark"] main [class~="bg-indigo-50"],
+.workspace-shell[data-theme="dark"] main [class~="bg-indigo-100"],
+.workspace-shell[data-theme="dark"] main [class~="bg-sky-50"],
+.workspace-shell[data-theme="dark"] main [class~="bg-amber-50"] {
+  background-color: #252526;
+}
+
+.workspace-shell[data-theme="dark"] main [class~="hover:bg-white"]:hover,
+.workspace-shell[data-theme="dark"] main [class~="hover:bg-amber-50"]:hover {
+  background-color: #303033;
+}
+
+.workspace-shell[data-theme="dark"] main [class~="text-slate-950"],
+.workspace-shell[data-theme="dark"] main [class~="text-slate-900"],
+.workspace-shell[data-theme="dark"] main [class~="text-slate-800"],
+.workspace-shell[data-theme="dark"] main [class~="text-slate-700"] {
+  color: #e5e5e5;
+}
+
+.workspace-shell[data-theme="dark"] main [class~="text-slate-600"],
+.workspace-shell[data-theme="dark"] main [class~="text-slate-500"],
+.workspace-shell[data-theme="dark"] main [class~="text-slate-400"] {
+  color: #a1a1a1;
+}
+
+.workspace-shell[data-theme="dark"] main [class~="border-slate-100"],
+.workspace-shell[data-theme="dark"] main [class~="border-slate-200"],
+.workspace-shell[data-theme="dark"] main [class~="ring-slate-100"],
+.workspace-shell[data-theme="dark"] main [class~="ring-slate-200"] {
+  border-color: #3c3c3c;
+  --tw-ring-color: #3c3c3c;
+}
+
+.workspace-shell[data-theme="dark"] main [class~="bg-lime-300"] {
+  color: #111827;
+}
+
 @keyframes scroll {
   from {
     transform: translateX(0);

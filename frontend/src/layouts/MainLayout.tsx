@@ -1,25 +1,26 @@
-import { MessageSquareText, SendHorizontal, Sparkles, X } from "lucide-react";
+import { MessageSquareText } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { sendChatMessage } from "../services/chatService";
+import ActivityBar from "./ActivityBar";
 import Sidebar from "./Sidebar";
-
-type ChatMessage = {
-  id: number;
-  sender: "assistant" | "user";
-  text: string;
-};
+import TabBar, { type WorkspaceTheme } from "./TabBar";
+import ChatPanel, { type ChatMessage } from "./ChatPanel";
 
 const WELCOME_ID = 1;
 const MAX_HISTORY = 6;
-const CHAT_HINT_KEY = "krawl-chat-hint-seen";
+const THEME_KEY = "portfolio-theme";
 
 export default function MainLayout() {
-  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
-  const [showChatHint, setShowChatHint] = useState(
-    () => window.localStorage.getItem(CHAT_HINT_KEY) !== "true",
-  );
+  const [explorerOpen, setExplorerOpen] = useState(true);
+  const [chatOpen, setChatOpen] = useState(() => window.matchMedia("(min-width: 1024px)").matches);
+  const [theme, setTheme] = useState<WorkspaceTheme>(() => {
+    const storedTheme = window.localStorage.getItem(THEME_KEY);
+    if (storedTheme === "light" || storedTheme === "dark") {
+      return storedTheme;
+    }
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+  });
   const [draft, setDraft] = useState("");
   const [isSending, setIsSending] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,10 @@ export default function MainLayout() {
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
   }, [messages, isSending]);
+
+  useEffect(() => {
+    window.localStorage.setItem(THEME_KEY, theme);
+  }, [theme]);
 
   const sendMessage = async () => {
     const trimmed = draft.trim();
@@ -69,155 +74,52 @@ export default function MainLayout() {
     ]);
   };
 
-  const dismissChatHint = () => {
-    window.localStorage.setItem(CHAT_HINT_KEY, "true");
-    setShowChatHint(false);
-  };
-
   return (
-    <div className="min-h-screen bg-[#f5f5ef]">
-      <div className="mx-auto max-w-[1600px]">
-        <div
-          className={`grid grid-cols-1 ${
-            isSidebarCollapsed
-              ? "lg:grid-cols-[64px_minmax(0,1fr)]"
-              : "lg:grid-cols-[260px_minmax(0,1fr)]"
-          }`}
-        >
-          <Sidebar
-            collapsed={isSidebarCollapsed}
-            onToggle={() => setIsSidebarCollapsed((current) => !current)}
-          />
+    <div className="workspace-shell flex min-h-screen w-full flex-col lg:h-screen lg:flex-row lg:overflow-hidden" data-theme={theme}>
+      <ActivityBar
+        explorerOpen={explorerOpen}
+        chatOpen={chatOpen}
+        onToggleExplorer={() => setExplorerOpen((current) => !current)}
+        onToggleChat={() => setChatOpen((current) => !current)}
+      />
 
-          <main className="min-w-0 p-6 lg:p-8">
-            <div className="mx-auto w-full min-w-0 max-w-6xl">
-              <Outlet />
-            </div>
-          </main>
-        </div>
+      <div className={`${explorerOpen ? "lg:block" : "lg:hidden"} h-[260px] w-full shrink-0 lg:h-full lg:w-[260px]`}>
+        <Sidebar />
       </div>
 
-      <div className="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
-        {!isOpen && showChatHint && (
-          <div
-            role="tooltip"
-            className="flex w-[min(280px,calc(100vw-2.5rem))] items-start gap-3 rounded-xl border border-slate-200 bg-white p-4 text-sm text-slate-700 shadow-xl"
-          >
-            <div>
-              <p className="font-semibold text-slate-900">Kurt's AI chatbot</p>
-              <p className="mt-1 leading-relaxed">
-                Ask about projects, skills, or experience.
-              </p>
-            </div>
-            <button
-              type="button"
-              aria-label="Dismiss chatbot tip"
-              onClick={dismissChatHint}
-              className="shrink-0 rounded-full p-1 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700"
-            >
-              <X className="h-4 w-4" />
-            </button>
+      <div className="flex min-w-0 flex-1 flex-col lg:h-full lg:overflow-hidden">
+        <TabBar
+          theme={theme}
+          onToggleTheme={() => setTheme((current) => (current === "dark" ? "light" : "dark"))}
+        />
+
+        <main className="workspace-content min-w-0 flex-1 p-6 lg:overflow-y-auto lg:p-8">
+          <div className="mx-auto w-full min-w-0 max-w-6xl">
+            <Outlet />
           </div>
-        )}
-
-        {isOpen && (
-          <div className="flex w-[340px] flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-2xl ring-1 ring-slate-100">
-            <div className="flex items-center justify-between bg-slate-900 px-4 py-3 text-white">
-              <div className="flex items-center gap-2">
-                <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-white/10 text-slate-100 ring-1 ring-white/10">
-                  <Sparkles className="h-4 w-4" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">Krawl</p>
-                </div>
-              </div>
-
-              <button
-                type="button"
-                aria-label="Close chat"
-                onClick={() => setIsOpen(false)}
-                className="rounded-full p-1 text-slate-200 transition hover:bg-white/10 hover:text-white"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-
-            <div className="flex h-[420px] flex-col bg-[#f4f3f1]">
-              <div ref={scrollRef} className="flex-1 space-y-3 overflow-y-auto px-3 py-3">
-                {messages.map((message) => (
-                  <div
-                    key={message.id}
-                    className={`flex ${
-                      message.sender === "assistant" ? "justify-start" : "justify-end"
-                    }`}
-                  >
-                    <div
-                      className={`max-w-[82%] whitespace-pre-line rounded-2xl px-3 py-2 text-sm leading-relaxed ${
-                        message.sender === "assistant"
-                          ? "bg-white text-slate-700 ring-1 ring-slate-200"
-                          : "bg-slate-900 text-white"
-                      }`}
-                    >
-                      {message.text}
-                    </div>
-                  </div>
-                ))}
-
-                {isSending && (
-                  <div className="flex justify-start">
-                    <div className="rounded-2xl bg-white px-3 py-2 text-sm text-slate-400 ring-1 ring-slate-200">
-                      Krawl is thinking...
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="border-t border-slate-200 bg-white p-3">
-                <div className="flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-2">
-                  <input
-                    type="text"
-                    value={draft}
-                    onChange={(event) => setDraft(event.target.value)}
-                    onKeyDown={(event) => {
-                      if (event.key === "Enter") {
-                        event.preventDefault();
-                        sendMessage();
-                      }
-                    }}
-                    maxLength={500}
-                    placeholder="Ask about Kurt's work..."
-                    className="w-full border-0 bg-transparent text-sm text-slate-700 placeholder:text-slate-400 focus:outline-none"
-                  />
-
-                  <button
-                    type="button"
-                    aria-label="Send message"
-                    onClick={sendMessage}
-                    disabled={isSending}
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-slate-900 text-white transition hover:bg-slate-700 disabled:opacity-50"
-                  >
-                    <SendHorizontal className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        <button
-          type="button"
-          aria-label="Open chat"
-          onClick={() => {
-            if (!isOpen) {
-              dismissChatHint();
-            }
-            setIsOpen((current) => !current);
-          }}
-          className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-900 text-white shadow-lg shadow-slate-900/15 ring-4 ring-white transition-all duration-200 hover:-translate-y-0.5 hover:scale-[1.02] hover:bg-slate-800"
-        >
-          <MessageSquareText className="h-5 w-5" />
-        </button>
+        </main>
       </div>
+
+      {chatOpen && (
+        <ChatPanel
+          messages={messages}
+          draft={draft}
+          setDraft={setDraft}
+          isSending={isSending}
+          sendMessage={sendMessage}
+          scrollRef={scrollRef}
+          onClose={() => setChatOpen(false)}
+        />
+      )}
+
+      <button
+        type="button"
+        aria-label="Open chat"
+        onClick={() => setChatOpen((current) => !current)}
+        className="fixed bottom-5 right-5 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-[#0078d4] text-white shadow-lg shadow-black/30 transition-transform hover:scale-105 lg:hidden"
+      >
+        <MessageSquareText className="h-5 w-5" />
+      </button>
     </div>
   );
 }
