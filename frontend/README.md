@@ -2,7 +2,9 @@
 
 ## Workspace layout
 
-The desktop workspace has separate activity bar, file explorer, editor, and chat panes with aligned headers and independently scrolling content. A full-width status bar below all panes contains the profile name and social links, remaining visible when the explorer or chat is closed. On smaller screens the explorer and editor stack, chat opens as a floating panel, and the status bar sticks to the bottom of the viewport.
+The desktop workspace has separate activity bar, file explorer, editor, and chat panes with aligned headers and independently scrolling content. A full-width status bar below all panes contains the technology stack and social links, remaining visible when the explorer or chat is closed. On smaller screens the explorer and editor stack, chat opens as a floating panel, and the status bar sticks to the bottom of the viewport.
+
+The VS Code-style status bar lists the actual implementation stack: React + TypeScript, .NET 10 / ASP.NET Core, Tailwind CSS, Vite, PostgreSQL, and EF Core. On narrow screens, the technology group scrolls horizontally (including with keyboard focus), while social links remain available.
 
 Page layouts use the named `editor` container for responsive breakpoints, rather than the browser width. This keeps headings and cards readable when the explorer and chat leave a narrow editor pane; wider layouts return automatically as space becomes available.
 
@@ -29,6 +31,8 @@ Portfolio content lives in `src/data/`, split by section so each area is quick t
 - `contact.ts`: contact copy and social links
 
 Edit the matching file when updating that section; the pages and home dashboard read from these modules.
+
+The Projects page uses `featured`, `preview`, and `highlights` from `projects.ts` for its showcase layout. Filters are derived from the existing categories and technologies, with AI and Full Stack groupings. Previews are explicitly labeled illustrations, not product screenshots. Fill in each project's `liveUrl` and `githubUrl` to enable its always-visible View Project and GitHub buttons; empty URLs leave them disabled with explanatory tooltips. An optional `caseStudyUrl` enables the Case Study link. Project details expand to show the recorded impact.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
