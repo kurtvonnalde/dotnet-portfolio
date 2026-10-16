@@ -24,8 +24,8 @@ const serviceIcons = [Code2, Cloud, Sparkles, BarChart3, Layers, Zap];
 export default function BentoGrid() {
   return (
     <section className="mt-8">
-      <div className="grid gap-4 lg:grid-cols-12">
-        <div className="lg:col-span-8">
+      <div className="grid gap-4 @min-[56rem]/editor:grid-cols-12">
+        <div className="min-w-0 @min-[56rem]/editor:col-span-8">
           <BentoCard title="PROJECTS" className="border-indigo-100">
             <div className="mb-4 flex items-center justify-between gap-3">
               <h2 className="flex items-center gap-2 text-lg font-bold text-slate-900">
@@ -39,7 +39,7 @@ export default function BentoGrid() {
                 View all <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <ul className="grid gap-3 md:grid-cols-2">
+            <ul className="grid gap-3 @min-[48rem]/editor:grid-cols-2">
               {projects.map((project, index) => {
                 const Icon = projectIcons[index % projectIcons.length];
                 return (
@@ -99,7 +99,7 @@ export default function BentoGrid() {
           </BentoCard>
         </div>
 
-        <div className="lg:col-span-4">
+        <div className="min-w-0 @min-[56rem]/editor:col-span-4">
           <BentoCard title="ABOUT ME" dark className="bg-[#101a35]">
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/10 text-sm font-bold ring-1 ring-white/15">
@@ -126,7 +126,7 @@ export default function BentoGrid() {
           </BentoCard>
         </div>
 
-        <div className="lg:col-span-4">
+        <div className="min-w-0 @min-[56rem]/editor:col-span-4">
           <BentoCard title="CERTIFICATIONS">
             <ul className="space-y-2.5">
               {certifications.map((cert) => (
@@ -154,9 +154,9 @@ export default function BentoGrid() {
           </BentoCard>
         </div>
 
-        <div className="lg:col-span-8">
+        <div className="min-w-0 @min-[56rem]/editor:col-span-8">
           <BentoCard title="SERVICES">
-            <ul className="grid grid-cols-2 gap-2.5 md:grid-cols-3">
+            <ul className="grid grid-cols-2 gap-2.5 @min-[48rem]/editor:grid-cols-3">
               {services.map((service, i) => {
                 const Icon = serviceIcons[i % serviceIcons.length];
                 const iconColors = [

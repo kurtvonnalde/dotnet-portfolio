@@ -24,10 +24,10 @@ export default function Contact() {
 
   return (
     <section className="mx-auto max-w-2xl">
-      <div className="rounded-lg border border-slate-200 border-t-4 border-t-slate-900 bg-white p-5 shadow-sm sm:p-8">
+      <div className="rounded-lg border border-slate-200 border-t-4 border-t-slate-900 bg-white p-5 shadow-sm @min-[40rem]/editor:p-8">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Contact</p>
-          <h1 className="mt-3 text-3xl font-extrabold text-slate-900 sm:text-4xl">Let's make it real.</h1>
+          <h1 className="mt-3 text-3xl font-extrabold text-slate-900 @min-[40rem]/editor:text-4xl">Let's make it real.</h1>
           <p className="mt-3 leading-relaxed text-slate-600">
             {contactContent.intro} Send a note and it will open in your email app, ready to go.
           </p>

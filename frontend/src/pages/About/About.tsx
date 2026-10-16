@@ -57,7 +57,7 @@ export default function About() {
         <div className="relative mt-7">
           <div
             aria-hidden="true"
-            className="absolute bottom-2 left-1.5 top-2 w-px bg-sky-200 lg:left-1/2"
+            className="absolute bottom-2 left-1.5 top-2 w-px bg-sky-200 @min-[64rem]/editor:left-1/2"
           />
           <ol
             className="space-y-5"
@@ -73,14 +73,14 @@ export default function About() {
               return (
                 <li
                   key={entry.id}
-                  className="relative pl-8 lg:grid lg:grid-cols-[minmax(0,1fr)_32px_minmax(0,1fr)] lg:items-start lg:gap-x-4 lg:pl-0"
+                  className="relative pl-8 @min-[64rem]/editor:grid @min-[64rem]/editor:grid-cols-[minmax(0,1fr)_32px_minmax(0,1fr)] @min-[64rem]/editor:items-start @min-[64rem]/editor:gap-x-4 @min-[64rem]/editor:pl-0"
                 >
                   <span
                     aria-hidden="true"
-                    className={`absolute left-0 top-5 h-3 w-3 rounded-full border-2 border-white ring-1 ring-slate-200 lg:static lg:col-start-2 lg:row-start-1 lg:mt-5 lg:justify-self-center ${markerClass}`}
+                    className={`absolute left-0 top-5 h-3 w-3 rounded-full border-2 border-white ring-1 ring-slate-200 @min-[64rem]/editor:static @min-[64rem]/editor:col-start-2 @min-[64rem]/editor:row-start-1 @min-[64rem]/editor:mt-5 @min-[64rem]/editor:justify-self-center ${markerClass}`}
                   />
                   <article
-                    className={`rounded-md border border-slate-200 bg-white p-4 ${index % 2 === 0 ? "lg:col-start-1" : "lg:col-start-3"}`}
+                    className={`rounded-md border border-slate-200 bg-white p-4 ${index % 2 === 0 ? "@min-[64rem]/editor:col-start-1" : "@min-[64rem]/editor:col-start-3"}`}
                   >
                     <div
                       className={`mb-2 inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ${colorClass}`}
@@ -118,7 +118,7 @@ export default function About() {
             Certifications
           </h2>
         </div>
-      <ul className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+      <ul className="mt-4 grid gap-4 @min-[40rem]/editor:grid-cols-2 @min-[80rem]/editor:grid-cols-3">
         {certifications.map((cert) => {
           const Icon = certificationIconMap[cert.icon ?? "award"] ?? Award;
 

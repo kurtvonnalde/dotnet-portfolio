@@ -47,7 +47,7 @@ export default function Tools() {
         </span>
       </div>
 
-      <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 xl:grid-cols-5">
+      <ul className="mt-6 grid grid-cols-2 gap-3 @min-[40rem]/editor:grid-cols-3 @min-[48rem]/editor:grid-cols-4 @min-[80rem]/editor:grid-cols-5">
         {skills.map((skill) => {
           const Icon = skillIcons[skill.icon];
           return (

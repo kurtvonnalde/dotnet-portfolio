@@ -139,20 +139,20 @@ export default function Services() {
 
   return (
     <section>
-      <header className="flex flex-col justify-between gap-6 border-b border-slate-200 pb-6 md:flex-row md:items-end">
+      <header className="flex flex-col justify-between gap-6 border-b border-slate-200 pb-6 @min-[48rem]/editor:flex-row @min-[48rem]/editor:items-end">
         <div className="max-w-2xl">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-indigo-600">
             Services
           </p>
-          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900 sm:text-4xl">
+          <h1 className="mt-2 text-3xl font-extrabold leading-tight text-slate-900 @min-[40rem]/editor:text-4xl">
             Turning ideas into real solutions.
           </h1>
-          <p className="mt-3 text-sm leading-relaxed text-slate-600 sm:text-base">
+          <p className="mt-3 text-sm leading-relaxed text-slate-600 @min-[40rem]/editor:text-base">
             From web applications and cloud delivery to AI, reporting, and automation,
             I help take useful ideas from first draft to dependable tools.
           </p>
         </div>
-        <div className="grid grid-cols-2 gap-3 sm:flex sm:gap-5">
+        <div className="grid grid-cols-2 gap-3 @min-[40rem]/editor:flex @min-[40rem]/editor:gap-5">
           {[
             [String(services.length), "Service areas"],
             ["3+ Years", "Experience"],
@@ -165,9 +165,9 @@ export default function Services() {
         </div>
       </header>
 
-      <div className="mt-6 grid gap-4 lg:grid-cols-5">
+      <div className="mt-6 grid gap-4 @min-[64rem]/editor:grid-cols-5">
         {featured && (
-          <article className="grid gap-5 overflow-hidden rounded-lg bg-slate-900 p-5 text-white sm:p-6 lg:col-span-3 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
+          <article className="grid gap-5 overflow-hidden rounded-lg bg-slate-900 p-5 text-white @min-[40rem]/editor:p-6 @min-[64rem]/editor:col-span-3 @min-[64rem]/editor:grid-cols-[1.1fr_0.9fr] @min-[64rem]/editor:items-center">
             <div>
               <span className="inline-flex items-center gap-1.5 rounded-md bg-indigo-500/20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-indigo-200">
                 <Sparkles className="h-3.5 w-3.5" /> Featured service
@@ -194,7 +194,7 @@ export default function Services() {
         )}
 
         {webDevelopment && (
-          <article className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm sm:grid-cols-[minmax(0,1fr)_128px] lg:col-span-2 lg:grid-cols-1">
+          <article className="grid gap-4 rounded-lg border border-slate-200 bg-white p-5 shadow-sm @min-[40rem]/editor:grid-cols-[minmax(0,1fr)_128px] @min-[64rem]/editor:col-span-2 @min-[64rem]/editor:grid-cols-1">
             <div className="flex min-w-0 flex-col">
               <div className="flex flex-wrap items-center gap-2">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-md bg-blue-50 text-blue-600">
@@ -223,18 +223,18 @@ export default function Services() {
                 Explore web development <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
-            <ServiceVisual title={webDevelopment.title} className="min-h-28 lg:min-h-32" />
+            <ServiceVisual title={webDevelopment.title} className="min-h-28 @min-[64rem]/editor:min-h-32" />
           </article>
         )}
       </div>
 
-      <div className="mt-4 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+      <div className="mt-4 grid gap-4 @min-[48rem]/editor:grid-cols-2 @min-[80rem]/editor:grid-cols-3">
         {supportingServices.map((service) => {
           const Icon = serviceIcons[service.title] ?? Sparkles;
           return (
             <article
               key={service.title}
-              className="grid gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[minmax(0,1fr)_112px] sm:items-center"
+              className="grid gap-3 rounded-lg border border-slate-200 bg-white p-4 shadow-sm @min-[40rem]/editor:grid-cols-[minmax(0,1fr)_112px] @min-[40rem]/editor:items-center"
             >
               <div>
                 <div className="flex flex-wrap items-center gap-2">
@@ -269,7 +269,7 @@ export default function Services() {
       </div>
 
       {lowCode && (
-        <article className="mt-4 grid gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm sm:grid-cols-[minmax(0,1fr)_minmax(140px,0.45fr)_auto] sm:items-center">
+        <article className="mt-4 grid gap-4 rounded-lg border border-slate-200 bg-white p-4 shadow-sm @min-[40rem]/editor:grid-cols-[minmax(0,1fr)_minmax(140px,0.45fr)_auto] @min-[40rem]/editor:items-center">
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md bg-violet-50 text-violet-600">

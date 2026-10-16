@@ -4,15 +4,15 @@ import { homeContent } from "../data/home";
 
 export default function Hero() {
   return (
-    <section className="grid overflow-hidden rounded-lg bg-[#111827] text-white lg:grid-cols-[minmax(0,1fr)_300px]">
-      <div className="px-6 py-8 sm:px-9 sm:py-10 lg:px-12 lg:py-12">
+    <section className="grid overflow-hidden rounded-lg bg-[#111827] text-white @min-[48rem]/editor:grid-cols-[minmax(0,1fr)_260px] @min-[64rem]/editor:grid-cols-[minmax(0,1fr)_300px]">
+      <div className="min-w-0 px-6 py-8 @min-[40rem]/editor:px-9 @min-[40rem]/editor:py-10 @min-[64rem]/editor:px-12 @min-[64rem]/editor:py-12">
         <p className="text-xs font-semibold uppercase tracking-[0.16em] text-lime-300">
           Full-stack developer <span className="mx-2 text-slate-500">/</span> React · .NET · Azure
         </p>
-        <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-[1.08] sm:text-5xl lg:text-6xl">
+        <h1 className="mt-5 max-w-3xl text-4xl font-extrabold leading-[1.08] @min-[40rem]/editor:text-5xl @min-[64rem]/editor:text-6xl">
           {homeContent.tagline}
         </h1>
-        <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg">
+        <p className="mt-5 max-w-2xl text-base leading-relaxed text-slate-300 @min-[40rem]/editor:text-lg">
           {homeContent.summary}
         </p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
@@ -31,7 +31,7 @@ export default function Hero() {
         </div>
       </div>
 
-      <aside className="flex flex-col justify-center border-t border-white/10 bg-white/[0.03] px-6 py-6 sm:px-9 lg:border-l lg:border-t-0 lg:px-8">
+      <aside className="flex flex-col justify-center border-t border-white/10 bg-white/[0.03] px-6 py-6 @min-[40rem]/editor:px-9 @min-[48rem]/editor:border-l @min-[48rem]/editor:border-t-0 @min-[48rem]/editor:px-6 @min-[64rem]/editor:px-8">
         <p className="mb-4 text-xs font-semibold uppercase tracking-[0.16em] text-slate-400">
           Building across the stack
         </p>

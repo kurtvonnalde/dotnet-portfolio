@@ -22,7 +22,7 @@ export default function Projects() {
       <h1 className="text-3xl font-extrabold text-slate-900">Projects</h1>
       <p className="mt-2 text-slate-600">Some of the things I've built.</p>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
+      <div className="mt-8 grid gap-4 @min-[40rem]/editor:grid-cols-2">
         {projects.map((project) => (
           <article
             key={project.title}

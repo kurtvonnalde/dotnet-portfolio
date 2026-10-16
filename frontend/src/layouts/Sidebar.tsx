@@ -1,15 +1,8 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ChevronDown, ChevronRight, FileCode, Folder, FolderOpen } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn, FaDiscord } from "react-icons/fa6";
 import { profile } from "../data/profile";
-import { contactContent } from "../data/contact";
-
-const socialIcons = {
-  facebook: FaFacebookF,
-  linkedin: FaLinkedinIn,
-  discord: FaDiscord,
-};
+import { workspacePages } from "../data/workspacePages";
 
 type NavItem = {
   label: string;
@@ -18,17 +11,8 @@ type NavItem = {
   end?: boolean;
 };
 
-const pagesNav: NavItem[] = [
-  { label: "Home", file: "Home.tsx", to: "/", end: true },
-  { label: "Projects", file: "Projects.tsx", to: "/projects" },
-  { label: "Services", file: "Services.tsx", to: "/services" },
-  { label: "Tools", file: "Tools.tsx", to: "/tools" },
-];
-
-const profileNav: NavItem[] = [
-  { label: "About", file: "About.tsx", to: "/about" },
-  { label: "Contact", file: "Contact.tsx", to: "/contact" },
-];
+const pagesNav = workspacePages.filter((page) => page.group === "pages");
+const profileNav = workspacePages.filter((page) => page.group === "profile");
 
 export default function Sidebar() {
   const [rootOpen, setRootOpen] = useState(true);
@@ -36,14 +20,14 @@ export default function Sidebar() {
   const [profileOpen, setProfileOpen] = useState(true);
 
   return (
-    <aside className="workspace-sidebar flex h-full w-full flex-col overflow-y-auto border-r lg:w-[260px]">
-      <div className="px-4 pb-2 pt-4">
+    <aside aria-label="File explorer" className="workspace-sidebar flex h-full w-full flex-col overflow-hidden border-b lg:w-[260px] lg:border-b-0 lg:border-r">
+      <div className="workspace-sidebar-rule flex h-9 shrink-0 items-center border-b px-4">
         <span className="workspace-sidebar-heading text-[11px] font-semibold uppercase tracking-[0.12em]">
           Explorer
         </span>
       </div>
 
-      <div className="workspace-sidebar-rule flex items-center gap-2 border-b px-3 pb-3 pt-1">
+      <div className="workspace-sidebar-rule flex shrink-0 items-center gap-2 border-b px-3 py-3">
         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[var(--avatar-bg)] text-[11px] font-bold text-white">
           {profile.initials}
         </span>
@@ -53,7 +37,7 @@ export default function Sidebar() {
         </div>
       </div>
 
-      <nav className="flex-1 py-2 text-[13px]">
+      <nav aria-label="Portfolio files" className="min-h-0 flex-1 overflow-y-auto py-2 text-[13px]">
         <FolderRow
           depth={0}
           label={profile.name.toUpperCase()}
@@ -82,25 +66,6 @@ export default function Sidebar() {
         )}
       </nav>
 
-      <div className="workspace-sidebar-rule border-t px-3 py-3">
-        <div className="flex items-center justify-center gap-1">
-          {contactContent.socials.map(({ platform, label, href }) => {
-            const Icon = socialIcons[platform];
-            return (
-              <a
-                key={label}
-                href={href}
-                aria-label={label}
-                target="_blank"
-                rel="noreferrer"
-                className="workspace-sidebar-muted workspace-sidebar-hover flex h-7 w-7 items-center justify-center rounded transition-colors hover:text-[var(--chrome-text)]"
-              >
-                <Icon className="h-3.5 w-3.5" />
-              </a>
-            );
-          })}
-        </div>
-      </div>
     </aside>
   );
 }
